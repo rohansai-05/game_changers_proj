@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Changers - Course Details</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        .course-details {
+            margin-bottom: 20px;
+        }
+        .progress-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .progress-container progress {
+            flex-grow: 1;
+            margin-right: 10px;
+        }
+        .day-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .day {
+            padding: 10px;
+            background-color: #f2f2f2;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .pdf-container {
+            width: 100%;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            display: none; /* Initially hidden */
+        }
+        #pdf-object {
+            width: 100%;
+            height: 500px;
+            border: none; /* No border initially */
+        }
+        .download-link {
+            text-align: right;
+        }
+        #complete-continue-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+        }
+        #complete-continue-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Game Changers</h1>
+        <div class="marquee">
+            <span id="user-name">Welcome!</span>
+        </div>
+        <div class="course-details">
+            <h2 id="course-name">Course Name</h2>
+            <p id="course-description">Course Description</p>
+        </div>
+        <div class="progress-container">
+            <label for="course-progress">Course Progress:</label>
+            <progress id="course-progress" value="0" max="5"></progress>
+            <span id="progress-percentage">0%</span>
+        </div>
+        <div class="day-container">
+            <div class="day" id="day1">Day 1</div>
+            <div class="day" id="day2">Day 2</div>
+            <div class="day" id="day3">Day 3</div>
+            <div class="day" id="day4">Day 4</div>
+            <div class="day" id="day5">Day 5</div>
+        </div>
+        <div class="pdf-container" id="pdf-container">
+            <object id="pdf-object" data="" type="application/pdf">
+                <p>Your browser does not support PDFs. <a id="pdf-link" href="">Download the PDF</a> instead.</p>
+            </object>
+            <div class="download-link">
+                <a id="download-link" href="#" download>Download PDF</a>
+            </div>
+        </div>
+        <button id="complete-continue-btn">Complete and Continue</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const dayContainers = document.querySelectorAll('.day');
+            const pdfContainer = document.getElementById('pdf-container');
+            const pdfObject = document.getElementById('pdf-object');
+            const pdfLink = document.getElementById('pdf-link');
+            const downloadLink = document.getElementById('download-link');
+            const progressBar = document.getElementById('course-progress');
+            const progressPercentage = document.getElementById('progress-percentage');
+            const completeContinueBtn = document.getElementById('complete-continue-btn');
+            const userNameElement = document.getElementById('user-name');
+            const courseNameElement = document.getElementById('course-name');
+            const courseDescriptionElement = document.getElementById('course-description');
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const courseName = urlParams.get('course');
+            const fullName = urlParams.get('name');
+
+            // Display welcome message with the user's name
+            userNameElement.textContent = `Welcome, ${fullName}!`;
+
+            // Update course details based on the selected course
+            switch (courseName) {
+                case 'ML PROJECTS':
+                    courseNameElement.textContent = 'ML PROJECTS';
+                    courseDescriptionElement.textContent = 'Explore more ML projects like recommendation system......';
+                    break;
+                case 'MERN STACK':
+                    courseNameElement.textContent = 'MERN STACK';
+                    courseDescriptionElement.textContent = 'Explore more about the MERN stack course......';
+                    break;
+                case 'REACT':
+                    courseNameElement.textContent = 'REACT';
+                    courseDescriptionElement.textContent = 'Explore more about React in the course....';
+                    break;
+                case 'NODE JS':
+                    courseNameElement.textContent = 'NODE JS';
+                    courseDescriptionElement.textContent = 'Explore more about Node.js in the course....';
+                    break;
+                // Add cases for other courses as needed
+                default:
+                    courseNameElement.textContent = 'Unknown Course';
+                    courseDescriptionElement.textContent = 'No description available.';
+                    break;
+            }
+
+            let currentDay = 0; // Start with 0, indicating no day is selected yet
+
+            function loadPDF(day) {
+                const courseSlug = courseName.toLowerCase().replace(/ /g, '_');
+                const pdfUrl = `pdfs/${courseSlug}_day_${day}.pdf`; // Adjust the path accordingly
+                pdfObject.setAttribute('data', pdfUrl);
+                pdfLink.setAttribute('href', pdfUrl);
+                downloadLink.setAttribute('href', pdfUrl);
+                pdfContainer.style.display = 'block';
+                pdfObject.style.border = '1px solid #ccc'; // Add border when PDF displayed
+            }
+            
+            
+            
+
+            function updateProgress() {
+                const percentage = (currentDay / 5) * 100;
+                progressBar.value = currentDay;
+                progressPercentage.textContent = `${percentage}%`;
+            }
+
+            dayContainers.forEach(day => {
+                day.addEventListener('click', () => {
+                    const dayNumber = day.textContent.split(' ')[1];
+                    currentDay = parseInt(dayNumber);
+                    loadPDF(currentDay);
+                    // Highlight the clicked day
+                    dayContainers.forEach(d => d.style.backgroundColor = '#f2f2f2');
+                    day.style.backgroundColor = '#007bff';
+                });
+            });
+
+            completeContinueBtn.addEventListener('click', () => {
+    if (currentDay < 5) {
+        currentDay++;
+        loadPDF(currentDay);
+        // Highlight the current day
+        const currentDayElement = document.getElementById(`day${currentDay}`);
+        dayContainers.forEach(day => day.style.backgroundColor = '#f2f2f2');
+        currentDayElement.style.backgroundColor = '#007bff';
+        // Update progress bar
+        updateProgress();
+
+        // Update progress in the database
+        const email = "<%= email %>"; // User's email from the server-side
+        const courseName = "<%= course %>"; // Course name from the server-side
+
+        fetch(`/update-progress?course=${courseName}&email=${email}&progress=${currentDay}`)
+            .then(response => response.json())
+            .then(data => {
+                // Handle success or error response
+                console.log(data); // Log the response for debugging
+            })
+            .catch(error => {
+                console.error('Error updating progress:', error);
+                // Handle error
+            });
+    }
+});
+
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Changers - Online Courses</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Existing CSS */
+
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    scroll-behavior: smooth;
+    background: #f8f9fa;
+}
+
+header {
+    background: url('main.jpg') no-repeat center center/cover;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+nav {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background: rgba(0, 0, 0, 0.7);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav .logo {
+    font-size: 1.8em;
+    font-weight: bold;
+}
+
+nav .nav-links {
+    list-style: none;
+    display: flex;
+}
+
+nav .nav-links li {
+    margin-left: 30px;
+}
+
+nav .nav-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav .nav-links a:hover {
+    color: #007BFF;
+}
+
+.header-content {
+    max-width: 700px;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.header-content h1 {
+    font-size: 3.5em;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.header-content p {
+    font-size: 1.5em;
+    margin-bottom: 40px;
+}
+
+.header-content button {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    background: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.header-content button:hover {
+    background: #0056b3;
+}
+
+.section {
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.section h2 {
+    font-size: 2.8em;
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+.section h2::after {
+    content: '';
+    width: 50px;
+    height: 4px;
+    background: #007BFF;
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.section p {
+    font-size: 1.2em;
+    max-width: 800px;
+    margin: 20px auto;
+    color: #555;
+}
+
+.course-list {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.course-list .course {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 250px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.course-list .course:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+form input, form textarea {
+    margin-bottom: 20px;
+    padding: 15px;
+    font-size: 1em;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+}
+
+form input:focus, form textarea:focus {
+    border-color: #007BFF;
+}
+
+form button {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    background: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+form button:hover {
+    background: #0056b3;
+}
+
+footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Login and Signup Page Styles */
+
+.auth-container {
+    background: url('main.jpg') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.auth-form {
+    background: url('bg.jpg') no-repeat center center/cover;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.auth-form h2 {
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+
+.auth-form input {
+    margin-bottom: 20px;
+    padding: 15px;
+    font-size: 1em;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.auth-form button {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    background: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+    transition: background 0.3s;
+}
+
+.auth-form button:hover {
+    background: #0056b3;
+}
+
+.auth-form p {
+    margin-top: 20px;
+}
+
+.auth-form a {
+    color: #007BFF;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.auth-form a:hover {
+    color: #0056b3;
+}
+
+/* Existing CSS */
+
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    scroll-behavior: smooth;
+    background: #f8f9fa;
+}
+
+header {
+    background: url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fpngtree.com%2Ffree-backgrounds-photos%2Fonline-course&psig=AOvVaw1avTzEjl5WDb7g0jXTy6T0&ust=1716908774222000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCODyhuCNroYDFQAAAAAdAAAAABAE') no-repeat center center/cover;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+nav {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background: rgba(0, 0, 0, 0.7);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav .logo {
+    font-size: 1.8em;
+    font-weight: bold;
+}
+
+nav .nav-links {
+    list-style: none;
+    display: flex;
+}
+
+nav .nav-links li {
+    margin-left: 30px;
+}
+
+nav .nav-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav .nav-links a:hover {
+    color: #007BFF;
+}
+
+.header-content {
+    background-color: #333;
+    max-width: 700px;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.header-content h1 {
+    font-size: 3.5em;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.header-content p {
+    font-size: 1.5em;
+    margin-bottom: 40px;
+}
+
+.header-content button {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    background: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.header-content button:hover {
+    background: #0056b3;
+}
+
+.section {
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.section h2 {
+    font-size: 2.8em;
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+.section h2::after {
+    content: '';
+    width: 50px;
+    height: 4px;
+    background: #007BFF;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -10px;
+}
+
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f8f9fa;
+}
+
+.auth-form {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.auth-form h2 {
+    margin-bottom: 20px;
+}
+
+.auth-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-form input {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.auth-form button {
+    padding: 15px;
+    font-size: 1em;
+    background: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.auth-form button:hover {
+    background: #0056b3;
+}
+
+.auth-form p {
+    margin-top: 20px;
+}
+
+.auth-form a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.auth-form a:hover {
+    text-decoration: underline;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section {
+    text-align: center;
+    padding: 20px;
+}
+
+.course-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-top: 20px;
+}
+
+.course-list {
+    display: flex;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+.course-card {
+    flex: 0 0 300px; /* Card width */
+    margin: 0 10px;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    text-decoration: none;
+    color: #000;
+}
+
+.course-card h3 {
+    margin-top: 0;
+}
+
+.arrow {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 0 10px;
+}
+
+.left-arrow {
+    position: absolute;
+    left: 0;
+}
+
+.right-arrow {
+    position: absolute;
+    right: 0;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Game Changers</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="signin">Login</a></li>
+                <li><a href="signup">Sign up</a></li>
+            </ul>
+        </nav>
+        <div class="header-content">
+            <h1>Welcome to Game Changers</h1>
+            <p>Transform your skills with our interactive courses.</p>
+            <button onclick="scrollToSection('about')">Learn More</button>
+        </div>
+    </header>
+
+    <section id="about" class="section">
+        <h2>About Us</h2>
+        <p>Game Changers is a platform dedicated to offering top-notch online courses to help you enhance your skills in various domains. Our interactive and engaging courses are designed to provide you with the best learning experience.</p>
+    </section>
+
+    <section id="courses" class="section">
+        <h2>Our Courses</h2>
+        <p>Explore our wide range of courses tailored to meet your learning needs.</p>
+        <div class="course-container">
+            <button class="arrow left-arrow" onclick="scrollLeft()">&#9664;</button>
+            <div class="course-list">
+                <a href="signin" class="course-card" target="_blank">
+                    <h3>ML PROJECTS</h3>
+                    <p>Explore more ML projects like recommendation system........</p>
+                </a>
+                <a href="signin" class="course-card" target="_blank">
+                    <h3>MERN STACK</h3>
+                    <p>Explore more about the MERN satck course......</p>
+                </a>
+                <a href="signin" class="course-card" target="_blank">
+                    <h3>REACT</h3>
+                    <p>Explore more about react in the course....</p>
+                </a>
+                <a href="signin" class="course-card" target="_blank">
+                    <h3>NODE JS</h3>
+                    <p>Explore more about NODE JS in the course....</p>
+                </a>
+                <!-- Add more courses as needed -->
+            </div>
+            <button class="arrow right-arrow" onclick="scrollRight()">&#9654;</button>
+        </div>
+    </section>
+    
+
+    <section id="contact" class="section">
+        <h2>Contact Us</h2>
+        <p>If you have any questions, feel free to reach out to us!</p>
+        <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" required></textarea>
+            <button type="submit">Send</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Game Changers. All rights reserved.</p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <script>function scrollLeft() {
+        const courseList = document.querySelector('.course-list');
+        courseList.scrollBy({
+            left: -300, // Adjust this value to scroll by the width of one card
+            behavior: 'smooth'
+        });
+    }
+    
+    function scrollRight() {
+        const courseList = document.querySelector('.course-list');
+        courseList.scrollBy({
+            left: 300, // Adjust this value to scroll by the width of one card
+            behavior: 'smooth'
+        });
+    }
+    </script>
+</body>
+</html>

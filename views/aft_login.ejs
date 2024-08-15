@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Changers</title>
+    <style>
+        body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-image: url('/images/main.jpg'); /* Set background image */
+        background-size: cover; /* Ensure the background covers the entire viewport */
+        background-position: center; /* Center the background image */
+    }
+    .header * {
+        color: red;
+    }
+    .header {
+        background-size: cover;
+        background-position: center;
+        padding: 50px 0; /* Adjust padding as needed */
+        text-align: center;
+        color: #fff; /* Set text color to contrast with the background image */
+    }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .marquee {
+            flex-grow: 1;
+            text-align: center;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+        .nav-links li {
+            margin-left: 20px;
+        }
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .header-content {
+            text-align: center;
+            padding: 50px 20px;
+        }
+        .header-content h1 {
+            margin: 0 0 20px;
+            font-size: 36px;
+        }
+        .header-content p {
+            font-size: 18px;
+        }
+        .header-content button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .section {
+            padding: 50px 20px;
+        }
+        #about, #courses, #contact, #profile {
+            background: #f4f4f4;
+            margin-bottom: 20px;
+        }
+        .course-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .course-list {
+            display: flex;
+            overflow-x: auto;
+        }
+        .course-card {
+            flex: 0 0 auto;
+            width: 200px;
+            margin: 0 10px;
+            background: #fff;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .arrow {
+            cursor: pointer;
+            font-size: 24px;
+            background: none;
+            border: none;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        form input, form textarea, form button {
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+    
+
+</style> 
+</head>
+<body>
+    <header class="header" style="background-image: url('/images/main.jpg')">
+        <nav>
+            <div class="logo">Game Changers</div>
+            <div class="marquee">
+                <span>Welcome, <%= full_name %>!</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#">Profile</a></li>
+            </ul>
+            
+        </nav>
+        
+        <div class="header-content">
+            <h1>Welcome to Game Changers</h1>
+            <p>Transform your skills with our interactive courses.</p>
+            <button onclick="scrollToSection('about')">Learn More</button>
+        </div>
+    </header>
+
+    <section id="profile" class="section">
+        <h2>Profile</h2>
+        <p><strong>Name:</strong> <%= full_name %></p>
+        <p><strong>Email:</strong> <%= email %></p>
+        <p><B>REGISTERED COURSES</B></p>
+        <div id="profile-courses">
+            
+            <!-- Registered courses will be displayed here -->
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <h2>About Us</h2>
+        <p>Game Changers is a platform dedicated to offering top-notch online courses to help you enhance your skills in various domains. Our interactive and engaging courses are designed to provide you with the best learning experience.</p>
+    </section>
+
+    <section id="courses" class="section">
+        <h2>Our Courses</h2>
+        <p>Explore our wide range of courses tailored to meet your learning needs.</p>
+        <div class="course-container">
+            <button class="arrow left-arrow" onclick="scrollLeft()">&#9664;</button>
+            <div class="course-list">
+                <div class="course-card">
+                    <h3>ML PROJECTS</h3>
+                    <button onclick="viewDetails('ML PROJECTS')">View Details</button>
+                    <p>Explore more ML projects like recommendation system........</p>
+                    <button onclick="registerCourse('ML PROJECTS',this)">Register</button>
+                    
+                </div>
+                <div class="course-card">
+                    <h3>MERN STACK</h3>
+                    <button onclick="viewDetails('MERN STACK')">View Details</button>
+                    <p>Explore more about the MERN stack course......</p>
+                    <button onclick="registerCourse('MERN STACK',this)">Register</button>
+                    
+                </div>
+                <div class="course-card">
+                    <h3>REACT</h3>
+                    <button onclick="viewDetails('REACT')">View Details</button>
+                    <p>Explore more about react in the course....</p>
+                    <button onclick="registerCourse('REACT',this)">Register</button>
+                </div>
+                <div class="course-card">
+                    <h3>NODE JS</h3>
+                    <button onclick="viewDetails('NODE JS')">View Details</button>
+                    <p>Explore more about NODE JS in the course....</p>
+                    <button onclick="registerCourse('NODE JS',this)">Register</button>
+                </div>
+                <!-- Add more courses as needed -->
+            </div>
+            <button class="arrow right-arrow" onclick="scrollRight()">&#9654;</button>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <h2>Contact Us</h2>
+        <p>If you have any questions, feel free to reach out to us!</p>
+        <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" required></textarea>
+            <button type="submit">Send</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Game Changers. All rights reserved.</p>
+    </footer>
+    <script>
+        function viewDetails(courseName) {
+    const email = "<%= email %>"; // User's email from the server-side
+    const fullName = "<%= full_name %>"; // User's full name from the server-side
+
+    fetch(`/check-registration?course=${courseName}&email=${email}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.registered && data.status === 'registered') {
+                window.location.href = `/main_1?course=${courseName}&email=${email}&name=${encodeURIComponent(fullName)}`;
+            } else {
+                alert('Please register for the course first.');
+            }
+        })
+        .catch(error => {
+            console.error('Error checking registration:', error);
+            alert('Error checking registration. Please try again later.');
+        });
+}
+
+    
+        function registerCourse(courseName, registerButton) {
+            const email = "<%= email %>"; // User's email from the server-side
+            const fullName = "<%= full_name %>"; // User's full name from the server-side
+    
+            // Disable the button to prevent multiple submissions
+            registerButton.disabled = true;
+    
+            fetch(`/check-registration?course=${courseName}&email=${email}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.registered && data.status === 'registered') {
+                        alert(`You are already registered for ${courseName}`);
+                        // Re-enable the button
+                        registerButton.disabled = false;
+                    } else {
+                        // If not registered or not in 'registered' status, proceed with registration
+                        fetch(`/register?course=${courseName}&email=${email}&name=${fullName}`)
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    alert(`Registered for ${courseName}`);
+                                    fetchAndDisplayRegisteredCourses(); // Fetch updated list of registered courses
+                                    registerButton.textContent = 'Unregister'; // Change button to Unregister
+                                    registerButton.onclick = () => unregisterCourse(courseName, registerButton); // Update click event
+                                } else {
+                                    alert('Registration failed');
+                                }
+                                // Re-enable the button regardless of success or failure
+                                registerButton.disabled = false;
+                            })
+                            .catch(error => {
+                                console.error('Error registering course:', error);
+                                alert('Registration failed. Please try again later.');
+                                // Re-enable the button in case of an error
+                                registerButton.disabled = false;
+                            });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error checking registration:', error);
+                    alert('Error checking registration. Please try again later.');
+                    // Re-enable the button in case of an error
+                    registerButton.disabled = false;
+                });
+        }
+    
+        function unregisterCourse(courseName, unregisterButton) {
+            const email = "<%= email %>"; // User's email from the server-side
+    
+            // Disable the button to prevent multiple submissions
+            unregisterButton.disabled = true;
+    
+            fetch(`/unregister?course=${courseName}&email=${email}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert(`Unregistered from ${courseName}`);
+                        fetchAndDisplayRegisteredCourses(); // Fetch updated list of registered courses
+                        unregisterButton.textContent = 'Register'; // Change button to Register
+                        unregisterButton.onclick = () => registerCourse(courseName, unregisterButton); // Update click event
+                    } else {
+                        alert('Unregistration failed');
+                    }
+                    // Re-enable the button regardless of success or failure
+                    unregisterButton.disabled = false;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    // Re-enable the button in case of an error
+                    unregisterButton.disabled = false;
+                });
+        }
+    
+        function fetchAndDisplayRegisteredCourses() {
+            const email = "<%= email %>"; // User's email from the server-side
+    
+            fetch(`/fetch-registered-courses?email=${email}`)
+                .then(response => response.json())
+                .then(data => {
+                    const profileCourses = document.getElementById('profile-courses');
+                    profileCourses.innerHTML = ''; // Clear existing courses
+                    data.courses.forEach(course => {
+                        const courseElement = document.createElement('div');
+                        courseElement.textContent = course;
+                        profileCourses.appendChild(courseElement);
+                    });
+    
+                    // Update register/unregister buttons based on registered courses
+                    const courseCards = document.querySelectorAll('.course-card');
+                    courseCards.forEach(card => {
+                        const courseName = card.querySelector('h3').textContent;
+                        const registerButton = card.querySelector('button:nth-child(3)'); // Assuming Register/Unregister button is the third button
+                        if (data.courses.includes(courseName)) {
+                            registerButton.textContent = 'Unregister';
+                            registerButton.onclick = () => unregisterCourse(courseName, registerButton);
+                        } else {
+                            registerButton.textContent = 'Register';
+                            registerButton.onclick = () => registerCourse(courseName, registerButton);
+                        }
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    
+        document.addEventListener('DOMContentLoaded', () => {
+            // Fetch and display registered courses on page load
+            fetchAndDisplayRegisteredCourses();
+        });
+    </script>
+    
+</body>
+</html>    
